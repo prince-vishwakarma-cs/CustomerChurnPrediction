@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customer Churn Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="isolate bg-white px-6 py-12">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-4xl font-semibold tracking-tight text-gray-900">
+          Customer Churn Predictor
+        </h2>
+      </div>
+
+      <form action="/predict" method="POST" class="mx-auto mt-12 max-w-xl">
+        <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 gap-x-6">
+          <div
+        class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+        aria-hidden="true"
+      >
+        <div
+          class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+          style="
+            clip-path: polygon(
+              74.1% 44.1%,
+              100% 61.6%,
+              97.5% 26.9%,
+              85.5% 0.1%,
+              80.7% 2%,
+              72.5% 32.5%,
+              60.2% 62.4%,
+              52.4% 68.1%,
+              47.5% 58.3%,
+              45.2% 34.5%,
+              27.5% 76.7%,
+              0.1% 64.9%,
+              17.9% 100%,
+              27.6% 76.8%,
+              76.1% 97.7%,
+              74.1% 44.1%
+            );
+          "
+        ></div>
+      </div>
+
+          <!-- Gender -->
+          <div>
+            <label
+              for="gender"
+              class="block text-sm font-semibold text-gray-900"
+              >Gender</label
+            >
+            <select
+              id="gender"
+              name="gender"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </div>
+
+          <!-- Senior Citizen -->
+          <div>
+            <label
+              for="SeniorCitizen"
+              class="block text-sm font-semibold text-gray-900"
+              >Senior Citizen</label
+            >
+            <select
+              id="SeniorCitizen"
+              name="SeniorCitizen"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+
+          <!-- Partner -->
+          <div>
+            <label
+              for="Partner"
+              class="block text-sm font-semibold text-gray-900"
+              >Partner</label
+            >
+            <select
+              id="Partner"
+              name="Partner"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <!-- Dependents -->
+          <div>
+            <label
+              for="Dependents"
+              class="block text-sm font-semibold text-gray-900"
+              >Dependents</label
+            >
+            <select
+              id="Dependents"
+              name="Dependents"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <!-- Tenure -->
+          <div>
+            <label
+              for="tenure"
+              class="block text-sm font-semibold text-gray-900"
+              >Tenure (months)</label
+            >
+            <input
+              type="number"
+              id="tenure"
+              name="tenure"
+              min="0"
+              max="72"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            />
+          </div>
+
+          <!-- Phone Service -->
+          <div>
+            <label
+              for="PhoneService"
+              class="block text-sm font-semibold text-gray-900"
+              >Phone Service</label
+            >
+            <select
+              id="PhoneService"
+              name="PhoneService"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="MultipleLines"
+              class="block text-sm font-semibold text-gray-900"
+              >Phone Service</label
+            >
+            <select
+              id="MultipleLines"
+              name="MultipleLines"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No phone service">No phone service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <!-- Internet Service -->
+          <div>
+            <label
+              for="InternetService"
+              class="block text-sm font-semibold text-gray-900"
+              >Internet Service</label
+            >
+            <select
+              id="InternetService"
+              name="InternetService"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="DSL">DSL</option>
+              <option value="Fiber optic">Fiber optic</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="OnlineSecurity"
+              class="block text-sm font-semibold text-gray-900"
+              >Online Security</label
+            >
+            <select
+              id="OnlineSecurity"
+              name="OnlineSecurity"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="OnlineBackup"
+              class="block text-sm font-semibold text-gray-900"
+              >Online Backup</label
+            >
+            <select
+              id="OnlineBackup"
+              name="OnlineBackup"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="DeviceProtection"
+              class="block text-sm font-semibold text-gray-900"
+              >Device Protection</label
+            >
+            <select
+              id="DeviceProtection"
+              name="DeviceProtection"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="TechSupport"
+              class="block text-sm font-semibold text-gray-900"
+              >Tech Support</label
+            >
+            <select
+              id="TechSupport"
+              name="TechSupport"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="StreamingTV"
+              class="block text-sm font-semibold text-gray-900"
+              >Streaming TV</label
+            >
+            <select
+              id="StreamingTV"
+              name="StreamingTV"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="StreamingMovies"
+              class="block text-sm font-semibold text-gray-900"
+              >Streaming Movies</label
+            >
+            <select
+              id="StreamingMovies"
+              name="StreamingMovies"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="No internet service">No internet service</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <!-- Contract -->
+          <div>
+            <label
+              for="Contract"
+              class="block text-sm font-semibold text-gray-900"
+              >Contract</label
+            >
+            <select
+              id="Contract"
+              name="Contract"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Month-to-month">Month-to-month</option>
+              <option value="One year">One year</option>
+              <option value="Two year">Two year</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="PaperlessBilling"
+              class="block text-sm font-semibold text-gray-900"
+              >Paperless Billing</label
+            >
+            <select
+              id="PaperlessBilling"
+              name="PaperlessBilling"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="PaymentMethod"
+              class="block text-sm font-semibold text-gray-900"
+              >Payment Method</label
+            >
+            <select
+              id="PaymentMethod"
+              name="PaymentMethod"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            >
+              <option value="Electronic check">Electronic check</option>
+              <option value="Mailed check">Mailed check</option>
+              <option value="Bank transfer (automatic)">
+                Bank transfer (automatic)
+              </option>
+              <option value="Credit card (automatic)">
+                Credit card (automatic)
+              </option>
+            </select>
+          </div>
+
+          <!-- Monthly Charges -->
+          <div>
+            <label
+              for="MonthlyCharges"
+              class="block text-sm font-semibold text-gray-900"
+              >Monthly Charges</label
+            >
+            <input
+              type="number"
+              id="MonthlyCharges"
+              name="MonthlyCharges"
+              min="0"
+              step="0.01"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            />
+          </div>
+
+          <!-- Total Charges -->
+          <div>
+            <label
+              for="TotalCharges"
+              class="block text-sm font-semibold text-gray-900"
+              >Total Charges</label
+            >
+            <input
+              type="number"
+              id="TotalCharges"
+              name="TotalCharges"
+              min="0"
+              step="0.01"
+              required
+              class="mt-2.5 block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+            />
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <button
+            type="submit"
+            class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white hover:bg-indigo-500"
+          >
+            Predict Churn
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
