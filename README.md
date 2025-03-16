@@ -50,7 +50,7 @@ The project uses a Telco Customer Churn dataset consisting of over 7,000 records
 - **Target Variable:** Churn (Yes/No).
 
 ## Project Structure
-
+```
 ├── README.md
 ├── telco-customer-churn.csv
 ├── churn_prediction_pipeline.ipynb
@@ -59,7 +59,7 @@ The project uses a Telco Customer Churn dataset consisting of over 7,000 records
 │   ├── ab_model.pkl
 │   ├── column_transformations.pkl
 │   └── label_encoder.pkl
-
+```
 - **README.md:** Project documentation.
 - **telco-customer-churn.csv:** The dataset file.
 - **churn_prediction_pipeline.ipynb:** Jupyter Notebook containing the complete pipeline.
